@@ -1,34 +1,47 @@
 group 'name.avioli.unilinks'
-version '0.4.0'
+version '0.6.0+3'
 
 buildscript {
     repositories {
         google()
-        jcenter()
+        mavenCentral()  // Replace jcenter with mavenCentral
     }
 
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.5.3'
+        classpath 'com.android.tools.build:gradle:7.3.0'  // Update gradle plugin
     }
 }
 
 rootProject.allprojects {
     repositories {
         google()
-        jcenter()
+        mavenCentral()  // Replace jcenter with mavenCentral
     }
 }
 
 apply plugin: 'com.android.library'
 
 android {
-    compileSdkVersion 28
+    compileSdkVersion 33  // Update to modern Android SDK
+    
+    namespace 'name.avioli.unilinks'  // Add namespace for modern Android Gradle Plugin
 
     defaultConfig {
         minSdkVersion 16
+        targetSdkVersion 33  // Add target SDK
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
+    
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_11
+        targetCompatibility JavaVersion.VERSION_11
+    }
+    
     lintOptions {
         disable 'InvalidPackage'
     }
+}
+
+dependencies {
+    implementation 'androidx.annotation:annotation:1.6.0'  // Add androidx annotation
 }
